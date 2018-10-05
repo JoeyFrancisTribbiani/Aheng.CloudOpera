@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aheng.CloudOpera.Api", "Aheng.CloudOpera.Api\Aheng.CloudOpera.Api.csproj", "{610A4685-F527-4ECE-AA5B-1FF8BDAEB2D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aheng.CloudOpera.Core", "Aheng.CloudOpera.Core\Aheng.CloudOpera.Core.csproj", "{9A3D30A9-F563-4558-AD95-D7187D51B82D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aheng.CloudOpera.Infrastructrue", "Aheng.CloudOpera.Infrastructrue\Aheng.CloudOpera.Infrastructrue.csproj", "{1B04AB12-79E3-4FB4-8E1C-0222D222578E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{610A4685-F527-4ECE-AA5B-1FF8BDAEB2D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{610A4685-F527-4ECE-AA5B-1FF8BDAEB2D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{610A4685-F527-4ECE-AA5B-1FF8BDAEB2D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{610A4685-F527-4ECE-AA5B-1FF8BDAEB2D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A3D30A9-F563-4558-AD95-D7187D51B82D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A3D30A9-F563-4558-AD95-D7187D51B82D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A3D30A9-F563-4558-AD95-D7187D51B82D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A3D30A9-F563-4558-AD95-D7187D51B82D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B04AB12-79E3-4FB4-8E1C-0222D222578E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B04AB12-79E3-4FB4-8E1C-0222D222578E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B04AB12-79E3-4FB4-8E1C-0222D222578E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B04AB12-79E3-4FB4-8E1C-0222D222578E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9BD22A96-BBEE-465D-94DF-6F3D2EE273E4}
+	EndGlobalSection
+EndGlobal
