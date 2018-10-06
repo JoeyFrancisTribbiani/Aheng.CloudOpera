@@ -1,0 +1,81 @@
+using Aheng.CloudOpera.Core.Entities;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Aheng.CloudOpera.Infrastructrue.DataBase
+{
+    public class OperaContextSeed
+    {
+        public static async Task SeedAsync(OperaContext operaContext,
+            ILoggerFactory loggerFactory,int retry = 0)
+        {
+            int retryForAvailability = retry;
+            try
+            {
+                // TODO: Only run this if using a real database
+                // myContext.Database.Migrate();
+
+                if (!operaContext.Users.Any())
+                {
+                    operaContext.AddRange(
+                        new List<User>()
+                        {
+                            new User
+                            {
+                                UserId = new Guid("5F40AFF9-7A5F-4CE9-BA87-4D336E5C464F"),
+                                UserName = "ceshi1",
+                                Dislike = 23,
+                                Like = 200,
+                                SilverDollar =10000,
+                                Favorites = 89,
+                                Followers =90,
+                                Following = 538,
+                                Medias = 90,
+                                Password = "123123",
+                                HeadShotUrl = "",
+                                Videos = new List<Video>
+                                {
+                                    new Video
+                                    {
+                                        VideoName = "四郎探母",
+                                        OwnerId = new Guid("5F40AFF9-7A5F-4CE9-BA87-4D336E5C464F"),
+                                        VideoId = new Guid("BB1C2818-FCD0-4155-91D3-7753C2964703"),
+                                        Tag = "Rap",
+                                        Size = 120000,
+                                        UploadTime = new DateTime()
+                                    },
+                                    new Video
+                                    {
+                                        VideoName = "叫张生躲在棋盘之下",
+                                        OwnerId = new Guid("5F40AFF9-7A5F-4CE9-BA87-4D336E5C464F"),
+                                        VideoId = new Guid("B12F7375-A321-4EA0-87EA-723824BE7DB8"),
+                                        Tag = "爱情经典",
+                                        Size = 20000,
+                                        UploadTime = new DateTime()
+                                    }
+                                    new Video
+                                    {
+                                        VideoName = "沙家浜",
+                                        OwnerId = new Guid("5F40AFF9-7A5F-4CE9-BA87-4D336E5C464F"),
+                                        VideoId = new Guid("2C8B209E-013B-4E2A-9F8A-582D4275EEE2"),
+                                        Tag = "爱情经典",
+                                        Size = 20000,
+                                        UploadTime = new DateTime()
+                                    }
+                                }
+                            }
+                        });
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+    }
+}

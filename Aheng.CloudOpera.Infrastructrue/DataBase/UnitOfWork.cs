@@ -9,6 +9,10 @@ namespace Aheng.CloudOpera.Infrastructrue.DataBase
     public class UnitOfWork:IUnitOfWork
     {
         private readonly OperaContext _operaContext;
+        public UnitOfWork(OperaContext operaContext)
+        {
+            _operaContext = operaContext;
+        }
 
         public async Task<bool> CompleteWorkAsync()
         {

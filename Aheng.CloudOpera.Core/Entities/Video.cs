@@ -51,5 +51,8 @@ namespace Aheng.CloudOpera.Core.Entities
         /// 封面图网址
         /// </summary>
         public string CoverPicUrl { get; set; }
+
+
+        public User Owner { get; set; }
     }
 }

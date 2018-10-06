@@ -34,13 +34,13 @@ namespace Aheng.CloudOpera.Api.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<Video>> Get(Guid videoId)
+        public ActionResult<Video> Get(Guid videoId)
         {
             if(videoId == Guid.Empty)
             {
                 return BadRequest();
             }
-            if(!await _videoRepository.TryGetVideoByIdAsync(videoId,out var video))
+            if(!_videoRepository.TryGetVideoById(videoId,out var video))
             {
                 return NotFound();
             }
@@ -109,8 +109,7 @@ namespace Aheng.CloudOpera.Api.Controllers
                 return new UnprocessableEntityObjectResult(ModelState);
             }
 
-            var video = await _videoRepository.GetVideoByIdAsync(videoId);
-            if(video == null)
+            if(!_videoRepository.TryGetVideoById(videoId,out var video))
             {
                 return NotFound();
             }
@@ -135,7 +134,7 @@ namespace Aheng.CloudOpera.Api.Controllers
             {
                 return BadRequest();
             }
-            if(!await _videoRepository.TryGetVideoByIdAsync(videoId,out var video))
+            if(!_videoRepository.TryGetVideoById(videoId,out var video))
             {
                 return NotFound();
             }

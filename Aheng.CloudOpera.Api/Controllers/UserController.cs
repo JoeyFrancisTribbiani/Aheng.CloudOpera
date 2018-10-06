@@ -7,10 +7,12 @@ using Aheng.CloudOpera.Core.Interfaces;
 using Aheng.CloudOpera.Core.Interfaces.Repositories;
 using Aheng.CloudOpera.Infrastructure.Resources.Users;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Aheng.CloudOpera.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -33,7 +35,7 @@ namespace Aheng.CloudOpera.Api.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<User>> Get(Guid userId)
+        public ActionResult<User> Get(Guid userId)
         {
             if(userId == Guid.Empty)
             {

@@ -41,5 +41,7 @@ namespace Aheng.CloudOpera.Core.Entities
         /// 头像图片网址
         /// </summary>
         public string HeadShotUrl { get; set; }
+
+        public ICollection<Video> Videos { get; set; }
     }
 }
