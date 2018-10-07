@@ -30,7 +30,7 @@ namespace Aheng.CloudOpera.Api
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<OperaContext>(options =>
             {
-                options.UseInMemoryDatabase("CloudOpera");
+                options.UseInMemoryDatabase("OperaDatabase");
             });
         }
 

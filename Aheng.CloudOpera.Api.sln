@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aheng.CloudOpera.Core", "Ah
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aheng.CloudOpera.Infrastructrue", "Aheng.CloudOpera.Infrastructrue\Aheng.CloudOpera.Infrastructrue.csproj", "{9B4C151C-21FD-4789-BCC1-0A9777AA0033}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aheng.IdentityProvider", "Aheng.IdentityProvider\Aheng.IdentityProvider.csproj", "{5A248D34-71C2-4365-9EF5-03BF649DA3CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityClientForTest", "IdentityClientForTest\IdentityClientForTest.csproj", "{072683F9-2654-403A-B20E-8C641DFDCDD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{9B4C151C-21FD-4789-BCC1-0A9777AA0033}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B4C151C-21FD-4789-BCC1-0A9777AA0033}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B4C151C-21FD-4789-BCC1-0A9777AA0033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A248D34-71C2-4365-9EF5-03BF649DA3CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A248D34-71C2-4365-9EF5-03BF649DA3CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A248D34-71C2-4365-9EF5-03BF649DA3CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A248D34-71C2-4365-9EF5-03BF649DA3CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{072683F9-2654-403A-B20E-8C641DFDCDD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{072683F9-2654-403A-B20E-8C641DFDCDD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{072683F9-2654-403A-B20E-8C641DFDCDD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{072683F9-2654-403A-B20E-8C641DFDCDD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
