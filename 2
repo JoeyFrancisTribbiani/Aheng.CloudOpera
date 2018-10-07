@@ -1,81 +1,86 @@
-using Aheng.CloudOpera.Core.Entities;
-using Microsoft.Extensions.Logging;
+using IdentityServer4.Models;
+using IdentityServer4.Test;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace Aheng.CloudOpera.Infrastructrue.DataBase
+namespace Aheng.IdentityProvider
 {
-    public class OperaContextSeed
+    public static class Config
     {
-        public static async Task SeedAsync(OperaContext operaContext,
-            ILoggerFactory loggerFactory,int retry = 0)
+        public static List<TestUser> GetUsers()
         {
-            int retryForAvailability = retry;
-            try
+            return new List<TestUser>
             {
-                // TODO: Only run this if using a real database
-                // myContext.Database.Migrate();
-
-                if (!operaContext.Users.Any())
+                new TestUser
                 {
-                    operaContext.AddRange(
-                        new List<User>()
-                        {
-                            new User
-                            {
-                                UserId = new Guid("5F40AFF9-7A5F-4CE9-BA87-4D336E5C464F"),
-                                UserName = "ceshi1",
-                                Dislike = 23,
-                                Like = 200,
-                                SilverDollar =10000,
-                                Favorites = 89,
-                                Followers =90,
-                                Following = 538,
-                                Medias = 90,
-                                Password = "123123",
-                                HeadShotUrl = "",
-                                Videos = new List<Video>
-                                {
-                                    new Video
-                                    {
-                                        VideoName = "四郎探母",
-                                        OwnerId = new Guid("5F40AFF9-7A5F-4CE9-BA87-4D336E5C464F"),
-                                        VideoId = new Guid("BB1C2818-FCD0-4155-91D3-7753C2964703"),
-                                        Tag = "Rap",
-                                        Size = 120000,
-                                        UploadTime = new DateTime()
-                                    },
-                                    new Video
-                                    {
-                                        VideoName = "叫张生躲在棋盘之下",
-                                        OwnerId = new Guid("5F40AFF9-7A5F-4CE9-BA87-4D336E5C464F"),
-                                        VideoId = new Guid("B12F7375-A321-4EA0-87EA-723824BE7DB8"),
-                                        Tag = "爱情经典",
-                                        Size = 20000,
-                                        UploadTime = new DateTime()
-                                    }
-                                    new Video
-                                    {
-                                        VideoName = "沙家浜",
-                                        OwnerId = new Guid("5F40AFF9-7A5F-4CE9-BA87-4D336E5C464F"),
-                                        VideoId = new Guid("2C8B209E-013B-4E2A-9F8A-582D4275EEE2"),
-                                        Tag = "爱情经典",
-                                        Size = 20000,
-                                        UploadTime = new DateTime()
-                                    }
-                                }
-                            }
-                        });
+                    SubjectId = "1",
+                    Username = "Nick",
+                    Password = "123",
+                    Claims = new List<Claim>
+                    {
+                        new Claim("given_name","Nick"),
+                        new Claim("family_name","Carter")
+                    }
+                },
+                new TestUser
+                {
+                    SubjectId = "2",
+                    Username = "Dave",
+                    Password = "123",
+                    Claims = new List<Claim>
+                    {
+                        new Claim("given_name","Dave"),
+                        new Claim("family)name","Mustaine")
+                    }
                 }
-            }
-            catch (Exception)
-            {
+            };
+        }
 
-                throw;
-            }
+        public static IEnumerable<IdentityResource> GetIdentityResources()
+        {
+            return new List<IdentityResource>
+            {
+                new IdentityResources.OpenId(),
+                new IdentityResources.Profile(),
+            };
+        }
+
+        public static IEnumerable<ApiResource> GetApiResources()
+        {
+            return new List<ApiResource>
+            {
+                new ApiResource("cloudoperaapi","CloudOperaApi")
+            };
+        }
+
+        public static IEnumerable<Client> GetClients()
+        {
+            return new List<Client>()
+            {
+                new Client
+                {
+                    ClientId = "mvcclient",
+                    ClientName = "Mvc 客户端",
+                    AllowedGrantTypes = GrantTypes.Hybrid,
+
+                    //登陆后跳转到这
+                    RedirectUris = {"https://localhost:5002/signin-oidc"},
+
+                    PostLogoutRedirectUris = {"https://localhost:5002/signout-callback-oidc"},
+
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServer4.IdentityServerConstants.StandardScopes.OpenId
+                    },
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    }
+                }
+            };
         }
     }
 }

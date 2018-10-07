@@ -1,4 +1,5 @@
-﻿using IdentityServer4.Models;
+﻿using IdentityServer4;
+using IdentityServer4.Models;
 using IdentityServer4.Test;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,8 @@ namespace Aheng.IdentityProvider
                     Claims = new List<Claim>
                     {
                         new Claim("given_name","Nick"),
-                        new Claim("family_name","Carter")
+                        new Claim("family_name","Carter"),
+                        new Claim("role","管理员")
                     }
                 },
                 new TestUser
@@ -33,7 +35,8 @@ namespace Aheng.IdentityProvider
                     Claims = new List<Claim>
                     {
                         new Claim("given_name","Dave"),
-                        new Claim("family)name","Mustaine")
+                        new Claim("family_name","Mustaine"),
+                        new Claim("role","注册用户")
                     }
                 }
             };
@@ -44,7 +47,20 @@ namespace Aheng.IdentityProvider
             return new List<IdentityResource>
             {
                 new IdentityResources.OpenId(),
-                new IdentityResources.Profile()
+                new IdentityResources.Profile(),
+                new IdentityResources.Email(),
+                new IdentityResource("roles", "角色", new List<string>{ "role" })
+            };
+        }
+
+        public static IEnumerable<ApiResource> GetApiResources()
+        {
+            return new List<ApiResource>
+            {
+                new ApiResource("cloudoperaapi","CloudOperaApi",new List<string>{
+                    "role",
+                    "given_name"
+                })
             };
         }
 
@@ -61,9 +77,15 @@ namespace Aheng.IdentityProvider
                     //登陆后跳转到这
                     RedirectUris = {"https://localhost:5002/signin-oidc"},
 
+                    PostLogoutRedirectUris = {"https://localhost:5002/signout-callback-oidc"},
+
                     AllowedScopes = new List<string>
                     {
-                        IdentityServer4.IdentityServerConstants.StandardScopes.OpenId
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email,
+                        "roles",
+                        "cloudoperaapi"
                     },
                     ClientSecrets =
                     {
