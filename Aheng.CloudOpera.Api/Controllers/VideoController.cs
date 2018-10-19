@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Aheng.CloudOpera.Core.Entities;
 using Aheng.CloudOpera.Core.Interfaces;
@@ -8,6 +9,7 @@ using Aheng.CloudOpera.Core.Interfaces.Repositories;
 using Aheng.CloudOpera.Infrastructure.Resources.Videos;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Aheng.CloudOpera.Api.Controllers
@@ -16,18 +18,24 @@ namespace Aheng.CloudOpera.Api.Controllers
     [ApiController]
     public class VideoController : ControllerBase
     {
+        private readonly IUserRepository _userRepository;
         private readonly IVideoRepository _videoRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IVedioFileServer _vedioFileServer;
 
         public VideoController(
+            IUserRepository userRepository,
             IVideoRepository videoRepository,
             IUnitOfWork unitOfWork,
-            IMapper mapper)
+            IMapper mapper,
+            IVedioFileServer vedioFileServer)
         {
+            _userRepository = userRepository;
             _videoRepository = videoRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _vedioFileServer = vedioFileServer;
         }
         // GET: api/Video
         [HttpGet("{id}", Name = "Get")]
@@ -145,6 +153,28 @@ namespace Aheng.CloudOpera.Api.Controllers
                 throw new Exception($"Error when deleting video: {videoId}");
             }
             return NoContent();
+        }
+
+        public async Task<IActionResult> Upload(Guid userId,FormFile file)
+        {
+            if(file == null)
+            {
+                return BadRequest("文件未上传");
+            }
+            User user;
+            if(!_userRepository.TryGetUserById(userId,out user))
+            {
+                return NotFound();
+            }
+
+            var path = await _vedioFileServer.Upload(user.UserId, file);
+            if (string.IsNullOrEmpty(path))
+            {
+                HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                return null;
+            }
+
+            return Ok(path);
         }
     }
 }

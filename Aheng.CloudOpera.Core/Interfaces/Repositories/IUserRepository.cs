@@ -9,7 +9,7 @@ namespace Aheng.CloudOpera.Core.Interfaces.Repositories
     public interface IUserRepository
     {
         Task<User> GetUserByIdAsync(Guid userId);
-        bool TryGetUserByIdAsync(Guid userId,out User user);
+        bool TryGetUserById(Guid userId,out User user);
         Task<IEnumerable<User>> GetUsersAsync(string jsonCondition);
         Task<IEnumerable<User>> GetUsersAsync(IEnumerable<Guid> userIds);
         Task<bool> UserExistAsync(Guid userId);

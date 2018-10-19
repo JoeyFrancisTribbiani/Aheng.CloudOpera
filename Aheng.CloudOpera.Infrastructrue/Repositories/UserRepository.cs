@@ -40,7 +40,7 @@ namespace Aheng.CloudOpera.Infrastructrue.Repositories
             throw new NotImplementedException();
         }
 
-        public bool TryGetUserByIdAsync(Guid userId, out User user)
+        public bool TryGetUserById(Guid userId, out User user)
         {
             throw new NotImplementedException();
         }

@@ -10,11 +10,15 @@ namespace Aheng.CloudOpera.Core.Entities
         public Guid OwnerId { get; set; }
         public DateTime UploadTime { get; set; }
         public TimeSpan Duration { get; set; }
-        public decimal Size { get; set; }
         public string VideoName { get; set; }
         public string Tag { get; set; }
         public string Cateroty { get; set; }
         public string Description { get; set; }
+        /// <summary>
+        /// 封面图网址
+        /// </summary>
+        public string CoverPicUrl { get; set; }
+        #region 社交属性
         /// <summary>
         /// 资源网址
         /// </summary>
@@ -47,11 +51,7 @@ namespace Aheng.CloudOpera.Core.Entities
         /// 点灭数
         /// </summary>
         public int Dislike { get; set; }
-        /// <summary>
-        /// 封面图网址
-        /// </summary>
-        public string CoverPicUrl { get; set; }
-
+        #endregion
 
         public User Owner { get; set; }
     }
